@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buy_tickets.css') }}">
+    <title>Ticket Master</title>
+</head>
+<body>
+    <h1>Buy tickets for {{ play_name.replace('_', ' ').title() }}</h1>
+
+    <img src="{{ url_for('static', filename='images/' + play_name + '.jpeg') }}" alt="">
+    
+    <form action="{{ url_for('order_summary', play_name=play_name) }}" method="post">
+        <div id="choosing_seat">
+            <div>
+                <h3 class="selector_label">Zone</h3>
+                <select name="zone" id="zone">
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="purple">Purple</option>
+                    <option value="orange">Orange</option>
+                </select>
+            </div>
+            <div>
+                <h3 class="selector_label">Sector</h3>
+                <select name="sector" id="sector">
+                    <option value="right">Right</option>
+                    <option value="right_center">Right Center</option>
+                    <option value="center">Center</option>
+                    <option value="left_center">Left Center</option>
+                    <option value="left">Left</option>
+                </select>        
+            </div>
+        </div>
+        <div id="buying_info">
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" id="customer_name" name="customer_name" required>
+            
+            <label for="date_and_time">Date and Time:</label>
+            <input type="text" id="date_and_time" name="date_and_time" placeholder="e.g., Dec 15, 2023 at 7:30 PM" required>
+
+            <input type="submit" value="Buy Tickets" id="submit">
+        </div>
+    </form>
+
+    <br style="clear: both;"><br>
+    <a href="{{ url_for('default') }}">Back to Main Page</a>
+</body>
+</html>
